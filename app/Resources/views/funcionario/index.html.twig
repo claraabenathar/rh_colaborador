@@ -1,0 +1,122 @@
+{% extends 'base.html.twig' %}
+{% block title %} Funcionários | RH {% endblock %}
+{% block content %}
+    <div id="top" class="row">
+        <div class="col-sm-3">
+            <h3>Lista de Funcionários </h3>
+        </div>
+        <div class="col-sm-6">
+           {# <div class="input-group h2">
+                <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar Itens">
+				<span class="input-group-btn">
+					<button class="btn btn-primary" type="submit">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+				</span>
+            </div>#}
+        </div>
+
+        <div class="col-sm-3" style="margin-bottom: 10px">
+            <a href="{{ path('funcionario_new') }}" class="btn btn-primary pull-right h1">NOVO</a>
+        </div>
+
+    </div> <!-- /#top -->
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Cpf</th>
+                <th>Nome</th>
+                <th>Datanascimento</th>
+                <th>Sexo</th>
+                <th>Createdat</th>
+                <th>Updatedat</th>
+                <th class="centralizar">Endereço</th>
+                <th class="centralizar">Dependentes</th>
+                <th class="centralizar">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for funcionario in funcionarios %}
+            <tr>
+                <td><a href="{{ path('funcionario_show', { 'id': funcionario.id }) }}">{{ funcionario.cpf }}</a></td>
+                <td>{{ funcionario.nome }}</td>
+                <td>{% if funcionario.dataNascimento %}{{ funcionario.dataNascimento|date('d-m-Y') }}{% endif %}</td>
+                <td>{{ funcionario.sexo }}</td>
+                <td>{% if funcionario.createdAt %}{{ funcionario.createdAt|date('d-m-Y H:i:s') }}{% endif %}</td>
+                <td>{% if funcionario.updatedAt %}{{ funcionario.updatedAt|date('d-m-Y H:i:s') }}{% endif %}</td>
+                <td align="center">
+                    {#<a class="btn btn-primary btn-bg" id="enderecoFuncionario" href="{{ path('endereco_show', { 'id': funcionario.id }) }}" data-toggle="modal" data-target="#enderecoModal" data-whatever="{{ funcionario.id }}"><i class="glyphicon glyphicon-home" title="Endereço"></i></a>#}
+                    <a class="btn btn-primary btn-bg" href="{{ path('endereco_funcionario', { 'id': funcionario.id }) }}"><i class="glyphicon glyphicon-plus-sign"></i></a>
+                </td>
+                <td align="center">
+                    {#<a class="btn btn-primary btn-bg" href="#" data-toggle="modal" data-target="#dependenteModal" data-whatever="{{ funcionario.id }}"><i class="glyphicon glyphicon-info-sign"></i></a>#}
+                    <a class="btn btn-primary btn-bg" href="{{ path('dependente_funcionario', { 'id': funcionario.id }) }}"><i class="glyphicon glyphicon-plus-sign"></i></a>
+                </td>
+                <td align="center">
+                    <a class="btn btn-warning btn-bg" href="{{ path('funcionario_edit', { 'id': funcionario.id }) }}">
+                        <i class="glyphicon glyphicon-pencil" title="Editar"></i>
+                    </a>
+                    {#<a class="btn btn-danger btn-bg" id="deleteFuncionario"#}
+                       {#href="javascript:void(0)" onclick="if(confirm('Você tem certeza?')){window.location='{{ path('funcionario_remove', {'id': funcionario.id }) }}';}">#}
+                        {#<i class="glyphicon glyphicon-trash" title="Deletar"></i>#}
+                    {#</a>#}
+                    <a onclick='javascript:del("{{ path('funcionario_remove', { 'id': funcionario.id }) }}")'
+                       class="btn btn-danger btn-bg" id="deleteFuncionario" >
+                        <i class="glyphicon glyphicon-trash" title="Excluir"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="modal fade" id="enderecoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="dependenteModal" tabindex="-1" role="dialog" >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Dependente</h4>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button data-entity-id="" type="button" class="btn btn-primary remove_item">Delete</button>
+
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modalLabel">Excluir Item</h4>
+                </div>
+                <div class="modal-body">
+                    Deseja realmente excluir este item?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" >Sim</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.modal -->
+
+{% endblock %}

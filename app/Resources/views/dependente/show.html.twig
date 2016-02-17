@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Dependente</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Nome</th>
+                <td>{{ dependente.nome }}</td>
+            </tr>
+            <tr>
+                <th>Datanascimento</th>
+                <td>{% if dependente.dataNascimento %}{{ dependente.dataNascimento|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Parentesco</th>
+                <td>{{ dependente.parentesco }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if dependente.createdAt %}{{ dependente.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Updatedat</th>
+                <td>{% if dependente.updatedAt %}{{ dependente.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ dependente.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <ul>
+        <li>
+            <a href="{{ path('dependente_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('dependente_edit', { 'id': dependente.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

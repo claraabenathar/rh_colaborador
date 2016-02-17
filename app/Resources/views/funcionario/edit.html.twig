@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block title %} Editar Funcionário | RH {% endblock %}
+{% block content %}
+    <h1>Editar Funcionário</h1>
+
+    {{ form_start(edit_form, { 'attr': {'class': 'form-horizontal', 'role':'form'} }) }}
+        <div class="form-group">
+            {{ form_row(edit_form.cpf, {'attr': {'title':' CPF','class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(edit_form.nome, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(edit_form.dataNascimento, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(edit_form.sexo, {'attr': {'class': 'form-control'}}) }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Editar</button>
+        <a href="{{ path('funcionario_index') }}" class="btn btn-default">Voltar</a>
+    {{ form_end(edit_form) }}
+
+{% endblock %}

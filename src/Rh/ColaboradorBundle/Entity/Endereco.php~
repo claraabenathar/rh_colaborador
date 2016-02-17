@@ -1,0 +1,86 @@
+<?php
+
+namespace Rh\ColaboradorBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Endereco
+ *
+ * @ORM\Table(name="endereco", indexes={@ORM\Index(name="IDX_F8E0D60E6D026E38", columns={"id_funcionario"})})
+ * @ORM\Entity
+ */
+class Endereco
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="logradouro", type="string", length=120, nullable=true)
+     */
+    private $logradouro;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="numero", type="integer", nullable=true)
+     */
+    private $numero;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="complemento", type="string", length=120, nullable=true)
+     */
+    private $complemento;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="bairro", type="string", length=120, nullable=true)
+     */
+    private $bairro;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cep", type="string", length=8, nullable=true)
+     */
+    private $cep;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cidade", type="string", length=40, nullable=true)
+     */
+    private $cidade;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="estado", type="string", length=2, nullable=true)
+     */
+    private $estado;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="endereco_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+    /**
+     * @var \Rh\ColaboradorBundle\Entity\Funcionario
+     *
+     * @ORM\ManyToOne(targetEntity="Rh\ColaboradorBundle\Entity\Funcionario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_funcionario", referencedColumnName="id")
+     * })
+     */
+    private $idFuncionario;
+
+
+}
+

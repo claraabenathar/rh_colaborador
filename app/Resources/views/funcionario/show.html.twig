@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+{% block title %}  Funcionário | RH {% endblock %}
+{% block content %}
+
+    <h1>Funcionario</h1>
+
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <th>CPF</th>
+                <td>{{ funcionario.cpf }}</td>
+            </tr>
+            <tr>
+                <th>Nome</th>
+                <td>{{ funcionario.nome }}</td>
+            </tr>
+            <tr>
+                <th>Data Nascimento</th>
+                <td>{% if funcionario.dataNascimento %}{{ funcionario.dataNascimento|date('d-m-Y') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Sexo</th>
+                <td>{{ funcionario.sexo }}</td>
+            </tr>
+            <tr>
+                <th>Criado em</th>
+                <td>{% if funcionario.createdAt %}{{ funcionario.createdAt|date('d-m-Y H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Arualizado em</th>
+                <td>{% if funcionario.updatedAt %}{{ funcionario.updatedAt|date('d-m-Y H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('funcionario_edit', { 'id': funcionario.id }) }}" class="btn btn-primary">Editar</a>
+    {#{{ form_start(delete_form) }}
+    <input type="submit" class="btn btn-danger" value="Delete">
+    {{ form_end(delete_form) }}#}
+    <a href="{{ path('funcionario_index') }}" class="btn btn-default">Voltar</a>
+
+{% endblock %}

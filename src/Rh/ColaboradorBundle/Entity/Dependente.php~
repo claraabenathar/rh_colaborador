@@ -1,0 +1,72 @@
+<?php
+
+namespace Rh\ColaboradorBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Dependente
+ *
+ * @ORM\Table(name="dependente", indexes={@ORM\Index(name="IDX_3EDA8DDC6D026E38", columns={"id_funcionario"})})
+ * @ORM\Entity
+ */
+class Dependente
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome", type="string", length=140, nullable=false)
+     */
+    private $nome;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_nascimento", type="date", nullable=true)
+     */
+    private $dataNascimento;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="parentesco", type="string", length=16, nullable=false)
+     */
+    private $parentesco;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="dependente_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+    /**
+     * @var \Rh\ColaboradorBundle\Entity\Funcionario
+     *
+     * @ORM\ManyToOne(targetEntity="Rh\ColaboradorBundle\Entity\Funcionario")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_funcionario", referencedColumnName="id")
+     * })
+     */
+    private $idFuncionario;
+
+
+}
+

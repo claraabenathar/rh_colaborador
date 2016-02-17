@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% block title %}  Endereço | RH {% endblock %}
+{% block content %}
+    <h1>Endereço  {% if funcionario is defined%} de {{ funcionario.nome}}{% endif %}</h1>
+
+    <table class="table table-bordered">
+                <tbody>
+                <tr>
+                    <th>Logradouro</th>
+                    <td>{{ endereco.logradouro }}</td>
+                </tr>
+                <tr>
+                    <th>Numero</th>
+                    <td>{{ endereco.numero }}</td>
+                </tr>
+                <tr>
+                    <th>Complemento</th>
+                    <td>{{ endereco.complemento }}</td>
+                </tr>
+                <tr>
+                    <th>Bairro</th>
+                    <td>{{ endereco.bairro }}</td>
+                </tr>
+                </tbody>
+            </table>
+    <a href="{{ path('endereco_edit', { 'id': funcionario.id }) }}" class="btn btn-primary">Editar</a>
+    <a href="{{ path('funcionario_index') }}" class="btn btn-default">Voltar</a>
+
+{% endblock %}

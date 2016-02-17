@@ -1,0 +1,83 @@
+<?php
+
+namespace Rh\ColaboradorBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Funcionario
+ *
+ * @ORM\Table(name="funcionario")
+ * @ORM\Entity
+ */
+class Funcionario
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cpf", type="string", length=16, nullable=true)
+     */
+    private $cpf;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome", type="string", length=255, nullable=false)
+     */
+    private $nome;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data_nascimento", type="date", nullable=true)
+     */
+    private $dataNascimento;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sexo", type="string", nullable=false)
+     */
+    private $sexo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=120, nullable=true)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="celular", type="string", length=16, nullable=true)
+     */
+    private $celular;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     */
+    private $updatedAt;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="funcionario_id_seq", allocationSize=1, initialValue=1)
+     */
+    private $id;
+
+
+}
+

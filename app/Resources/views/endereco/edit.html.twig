@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Editar Endereço | RH {% endblock %}
+{% block content %}
+    <h1>Editar Endereço {% if funcionario is defined%} de {{ funcionario.nome}}{% endif %}</h1>
+
+    {{ form_start(edit_form) }}
+        <div class="form-group">
+            {{ form_row(edit_form.logradouro, {'attr': {'title':'Rua, Avenida..','class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(edit_form.numero, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(edit_form.complemento, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_row(edit_form.bairro, {'attr': {'class': 'form-control'}}) }}
+        </div>
+        <button type="submit" class="btn btn-primary">Editar</button>
+        <a href="{{ path('funcionario_index') }}" title="Voltar para a lista de Funcionários" class="btn btn-default">Voltar</a>
+    {{ form_end(edit_form) }}
+
+{% endblock %}

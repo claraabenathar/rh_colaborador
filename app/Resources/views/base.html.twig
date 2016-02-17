@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+
+    <!-- Latest compiled and minified CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- <link rel="stylesheet" href="http://getbootstrap.com/examples/justified-nav/justified-nav.css"> -->
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <title>{% block title %}RH!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">RH </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">In&iacute;cio</a></li>
+                {#<li><a href="#">Op&ccedil;&oacute;es</a></li>
+                <li><a href="#">Perfil</a></li>
+                <li><a href="#">Ajuda</a></li>#}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="main" class="container-fluid" style="margin-top: 50px">
+        {% block  body %}
+            <section class="section">
+                <div class="container">
+                    <div class="row">
+                        <div class="span3">
+                            <ul class="nav nav-tabs nav-stacked">
+                                <li><a href="{{ path('funcionario_index') }}">Home</a></li>
+                            </ul>
+                        </div>
+                        <div class="span9">
+                            <div class="row">
+                                {% block content %}{% endblock %}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        {% endblock %}
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+        <script src="{{ asset('js/script.js') }}"></script>
+        <!-- Latest compiled and minified JavaScript-->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        {% block javascripts %}{% endblock %}
+    </div>
+</body>
+</html>
