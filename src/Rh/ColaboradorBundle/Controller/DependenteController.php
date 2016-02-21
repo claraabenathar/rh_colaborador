@@ -123,7 +123,7 @@ class DependenteController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($dependente);
             $em->flush();
-            return $this->redirectToRoute('dependente_indez', array('id' =>  $funcionario->getId()));
+            return $this->redirectToRoute('dependente_index', array('id' =>  $funcionario->getId()));
             //return $this->redirectToRoute('dependente_edit', array('funcionario' => $funcionario->getId(), 'id' => $dependente->getId()));
         }
 
